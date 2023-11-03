@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata: 
-  name: go-user-api
+  name: user-api
   labels:
     app: myapp
 spec:
   containers:
-    - name: go-user-api
-      image: vamsisiddu/go-user-api:v1
+    - name: user-api
+      image: vamsikrishnadell/user-api
       ports:
        - containerPort: 8080

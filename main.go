@@ -45,10 +45,31 @@ func handleusers(c *gin.Context) {
 
 }
 
+func GetUser(c *gin.Context) {
+	u := User{}
+	id := c.Param("id")
+
+	for i := 0; i < len(Users); i++ {
+		if id == Users[i].Id {
+			u = Users[i]
+			break
+		}
+	}
+
+	if u.Id == "" && u.Name == "" {
+		c.JSON(http.StatusNotFound, "")
+		return
+	}
+
+	c.JSON(http.StatusOK, u)
+}
+
 func main() {
 	fmt.Println("server")
 
 	r.POST("/users", handleusers)
+
+	r.GET("/users/:id", GetUser)
 
 	r.Run()
 }
